@@ -39,19 +39,19 @@ public class ControleAluno implements Serializable {
     }
     
     public String listar(){
-        setEditando((Boolean) false);
+        setEditando(false);
         return "privado/aluno/listar?faces-redirect=true";
     }
 
     public void novo(){
         objeto = new Aluno();
-        setEditando((Boolean) true);
+        setEditando(true);
     }
     
     public void alterar(Integer id){
         try {
             objeto = daoAluno.getObjectById(id);
-            setEditando((Boolean) true);
+            setEditando(true);
         } catch (Exception e){
             Util.mensagemErro("Erro ao recuperar objeto: "+
                     Util.getMensagemErro(e));
@@ -77,7 +77,7 @@ public class ControleAluno implements Serializable {
                 daoAluno.merge(objeto);
             }
             Util.mensagemInformacao("Objeto persistido com sucesso!");
-            setEditando((Boolean) false);
+            setEditando(false);
         } catch (Exception e){
             Util.mensagemErro("Erro ao persistir objeto: " + 
                     Util.getMensagemErro(e));
